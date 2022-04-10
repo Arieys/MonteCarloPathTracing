@@ -12,3 +12,7 @@ height 720 //场景分辨率高度
 mtlname Light 16.4648 16.4648 16.4648 //光源radiance  
   
 渲染生成的文件在.result文件夹中  
+
+PathTracer渲染结果展示
+![bedroom-SPP256](https://user-images.githubusercontent.com/49404329/162612869-a46830ad-87bd-47f7-9ad7-1a823dc40e6b.png)
+![veach-mis-SPP100](https://user-images.githubusercontent.com/49404329/162612896-e3361e6f-d737-4975-aca9-82fcda2da1f8.png)
