@@ -14,7 +14,7 @@ mtlname Light 16.4648 16.4648 16.4648 //光源radiance
 渲染生成的文件在.result文件夹中  
 render_scene函数为渲染场景主函数，接收两个参数：文件名和每个像素的采样数，在调用时修改采样数以得到不同质量的光追结果
 
-算法详解和代码详细解释见博客：
+算法详解和代码详细解释见博客：https://blog.csdn.net/Listoree/article/details/124081645
 
 PathTracer渲染结果展示
 ![bedroom-SPP256](https://user-images.githubusercontent.com/49404329/162612869-a46830ad-87bd-47f7-9ad7-1a823dc40e6b.png)  
