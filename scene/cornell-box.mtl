@@ -1,0 +1,36 @@
+newmtl LeftWall
+Kd 0.63 0.065 0.05
+Ks 0 0 0
+Ns 1
+Ni 1
+newmtl RightWall
+Kd 0.14 0.091 0.45
+Ks 0 0 0
+Ns 1
+Ni 1
+newmtl Floor
+Kd 0.8 0.8 0.8
+Ks 0 0 0
+Ns 1
+Ni 1
+newmtl Ceiling
+Kd 0.8 0.8 0.8
+Ks 0 0 0
+Ns 1
+Ni 1
+newmtl BackWall
+Kd 0.8 0.8 0.8
+Ks 0 0 0
+Ns 1
+Ni 1
+newmtl Light
+Kd 0 0 0
+Ks 0 0 0
+Ns 1
+Ni 1
+newmtl Table
+Kd 1 1 1
+Ks 0 0 0
+Ns 1
+Ni 1
+map_Kd cherry-wood-texture.jpg

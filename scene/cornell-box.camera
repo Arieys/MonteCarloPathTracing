@@ -1,0 +1,7 @@
+eye 0 1 6.8
+lookat 0 1 5.8
+up 0 1 0
+fovy 19.5
+width 1024
+height 1024
+mtlname Light 17 12 4

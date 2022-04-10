@@ -1,0 +1,50 @@
+newmtl BackGround
+Kd 0.65 0.74 0.73
+Ks 0 0 0
+Ns 1
+Ni 1
+newmtl Plane1
+Kd 0.1 0.15 0.4
+Ks 0.8 0.8 1
+Ns 100000
+Ni 1
+newmtl Plane2
+Kd 0.1 0.15 0.4
+Ks 0.8 0.8 1
+Ns 10000
+Ni 1
+newmtl Plane3
+Kd 0.1 0.15 0.4
+Ks 0.8 0.8 1
+Ns 1000
+Ni 1
+newmtl Plane4
+Kd 0.1 0.15 0.4
+Ks 0.8 0.8 1
+Ns 300
+Ni 1
+newmtl Light5
+Kd 0.0 0.0 0.0
+Ks 0 0 0
+Ns 1
+Ni 1
+newmtl Light4
+Kd 0.0 0.0 0.0
+Ks 0 0 0
+Ns 1
+Ni 1
+newmtl Light3
+Kd 0.0 0.0 0.0
+Ks 0 0 0
+Ns 1
+Ni 1
+newmtl Light2
+Kd 0.0 0.0 0.0
+Ks 0 0 0
+Ns 1
+Ni 1
+newmtl Light1
+Kd 0.0 0.0 0.0
+Ks 0 0 0
+Ns 1
+Ni 1
