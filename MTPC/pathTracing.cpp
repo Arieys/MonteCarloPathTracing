@@ -2,7 +2,7 @@
 
 bool russian_Roulette(double pr)
 {
-	static std::default_random_engine e;
+	static std::default_random_engine e(time(NULL));
 	static std::uniform_real_distribution<double>u1(0, 1);
 	double rnd = u1(e);
 	//std::cout << rnd << std::endl;
@@ -72,7 +72,7 @@ Ray nextRay(intersection &p, Vertex dir,Vertex kd, scene_data &data)
 
 	Vertex direction;
 
-	//for fraction
+	//for refraction
 
 	if (m->Ni > 1) {
 		//std::cout << "fraction :" << m->name << std::endl;
@@ -218,7 +218,8 @@ Vertex shade(intersection &p, Vertex dir, scene_data &data, BVH &bvh)
 			double pdf_light = double(1)/total_aera; //pdf_light = 1/A where A is the aera of light source
 			double cos_theta = abs(direction * vn / direction.norm() / vn.norm());
 			double cos_theta_hat = abs(direction * p.pn / direction.norm() / p.pn.norm());
-			Vertex intensity = l.radiance  *  cos_theta * cos_theta_hat / pow(distance(xl, p.p), 2) / pdf_light * visibility;
+			double dist = max(1.0,distance(xl, p.p));
+			Vertex intensity = l.radiance  *  cos_theta * cos_theta_hat / pow(dist, 2) / pdf_light * visibility;
 			double kd_dots = direction * p.pn; //cos between light to intersection and face normal
 			
 			//only add diffuse
@@ -230,9 +231,9 @@ Vertex shade(intersection &p, Vertex dir, scene_data &data, BVH &bvh)
 		}
 	}
 
-	//return L_dir;
 	//indirect illumination
 	Vertex L_indir(0, 0, 0);
+	Vertex ret_radiance;
 	double P_RR = 0.6; //russian roulette probability
 
 	//BRDF sample the hemisphere, get direction
@@ -242,6 +243,7 @@ Vertex shade(intersection &p, Vertex dir, scene_data &data, BVH &bvh)
 		intersection ret;
 		if (ray_intersect(r, data, bvh, ret)) {
 			Vertex intensity = shade(ret, r.direction.negative(),data,bvh) / P_RR;
+
 			if (r.ray_type == DIFFUSE) {
 				if (data.light_map.find(ret.f.material) == data.light_map.end()) { //hit none emitting object
 					L_indir.x += kd.x * intensity.x;
@@ -263,6 +265,11 @@ Vertex shade(intersection &p, Vertex dir, scene_data &data, BVH &bvh)
 	return L_dir + L_indir;
 }
 
+//clock_t start_intersect, end_intersect;
+//clock_t start_shade, end_shade;
+//double intersect_duration = 0, shade_duration = 0;
+clock_t s, e;
+double duration = 0;
 //逐像素发射光线
 void generateImg(scene_data &scene, BVH &bvh, image &img, int N_ray_per_pixel)
 {
@@ -287,12 +294,13 @@ void generateImg(scene_data &scene, BVH &bvh, image &img, int N_ray_per_pixel)
 	Vertex start_point = screen_center - (screen_x_dir * dx) + (scene.camera.up * dy); //逐像素发射光线 像素的中心位置
 	Vertex pos = start_point;
 	for (int i = 0; i < scene.camera.height; i++) {
-	//for (int i = 30; i < 70; i++) {
 		pos = start_point - (screen_pdy * i);
 		
 		for (int j = 0; j < scene.camera.width; j++) {
 			mutex m;
-			omp_set_num_threads(N_ray_per_pixel);
+			glm::vec3 current_radiance(0, 0, 0);
+			//mutex clock_inte_m, clock_shade_m;
+			omp_set_num_threads(min(N_ray_per_pixel,8));
 			#pragma omp parallel for
 			for (int k = 0; k < N_ray_per_pixel; k++) {
 				Ray ray;
@@ -303,73 +311,66 @@ void generateImg(scene_data &scene, BVH &bvh, image &img, int N_ray_per_pixel)
 				intersection ret;
 				if (ray_intersect(ray, scene, bvh, ret)) {
 					Vertex radiance = shade(ret, ray.direction.negative(), scene, bvh);
-					//if(radiance.x != 0) radiance.print();
-					if (strcmp(ret.f.material.c_str(), "Light")==0) {
-						//radiance.print();
-					}
-					//radiance.print();
-
-					//if (radiance.x > 1) radiance.x = 1;
-					//if (radiance.y > 1) radiance.y = 1;
-					//if (radiance.z > 1) radiance.z = 1;
 
 					m.lock();
-					img.img[img.getIndex(j, i, 0)] += radiance.x/N_ray_per_pixel;
-					img.img[img.getIndex(j, i, 1)] += radiance.y/N_ray_per_pixel;
-					img.img[img.getIndex(j, i, 2)] += radiance.z/N_ray_per_pixel;
+					current_radiance.x += radiance.x/N_ray_per_pixel;
+					current_radiance.y += radiance.y/N_ray_per_pixel;
+					current_radiance.z += radiance.z/N_ray_per_pixel;
 					m.unlock();
-					//std::cout << ret.f.material << std::endl;
-					//img.img[img.getIndex(j, i, 0)] = 1;
 				}
 			}
+			img.img[img.getIndex(j, i, 0)] = current_radiance.x;
+			img.img[img.getIndex(j, i, 1)] = current_radiance.y;
+			img.img[img.getIndex(j, i, 2)] = current_radiance.z;
+
 			pos = pos + screen_pdx;
 		}
 		std::cout << "img pos: (" << i << ",x) generate successfully " << std::endl;
 	}
+	std::cout << "Garvo time cost = " << duration << " ms" << std::endl;
 }
 
 //ray intersection detect using bvh
 void bvh_intersect(Ray ray, BVH &bvh, intersection &v, int current_node, int current_level, bool &flag)
 {
 	int index = bvh.findIndex(current_node, current_level);
-	if (bvh.bvh[index].level == bvh.Level && intersect(ray,bvh.bvh[index].b)) {
-		//reach leaf node
-		Vertex ret;
-		if (intersect(ray, *bvh.bvh[index].object, ret)) {
-			//if(bvh.bvh[index].object->material[0] == 'P')
-				//std::cout << "hit " << bvh.bvh[index].object->material << std::endl;
-			intersection i;
-			i.p = ret;
-			i.ray = ray;
-			i.t = (i.p.x - ray.start.x) / ray.direction.x;
-			i.f = *bvh.bvh[index].object;
+	if (intersect(ray, bvh.bvh[index].b)) {
+		if (bvh.bvh[index].level == bvh.Level) {
+				//reach leaf node
+				Vertex ret;
+				if (intersect(ray, *bvh.bvh[index].object, ret)) {
+					//if(bvh.bvh[index].object->material[0] == 'P')
+						//std::cout << "hit " << bvh.bvh[index].object->material << std::endl;
+					intersection i;
+					i.p = ret;
+					i.ray = ray;
+					i.t = (i.p.x - ray.start.x) / ray.direction.x;
+					i.f = *bvh.bvh[index].object;
 
-			Vertex garcov = findGarCor(i.f, i.p);
-			i.pn = (i.f.vn1 * garcov.x) + (i.f.vn2 * garcov.y) + (i.f.vn3 * garcov.z);
-			//if (ray.direction * i.f.norm < 0) i.pn = i.f.norm;
-				//else i.pn = i.f.norm.negative();
+					Vertex garcov = findGarCor(i.f, i.p);
+					i.pn = (i.f.vn1 * garcov.x) + (i.f.vn2 * garcov.y) + (i.f.vn3 * garcov.z);
+					//if (ray.direction * i.f.norm < 0) i.pn = i.f.norm;
+						//else i.pn = i.f.norm.negative();
 
-			if (flag == false) {
-				if (i.t > 0) {
-					v = i;
-					flag = true;
+					if (flag == false) {
+						if (i.t > 0) {
+							v = i;
+							flag = true;
+						}
+					}
+					else if (i.t > 0 && i.t < v.t) v = i; //remain the smallest t one
 				}
-			}
-			else if (i.t > 0 && i.t < v.t) v = i; //remain the smallest t one
-		}
-		//}
+				//}
 
-		return;
-	}
-	else {
-		if (intersect(ray, bvh.bvh[index].b)) {
-			int next_node1 = 2 * current_node + 1;
-			int next_node2 = 2 * current_node + 2;
-			bvh_intersect(ray, bvh, v, next_node1, current_level+1,flag);
-			bvh_intersect(ray, bvh, v, next_node2, current_level+1,flag);
+				return;
+			}	
+		else {
+				int next_node1 = 2 * current_node + 1;
+				int next_node2 = 2 * current_node + 2;
+				bvh_intersect(ray, bvh, v, next_node1, current_level+1,flag);
+				bvh_intersect(ray, bvh, v, next_node2, current_level+1,flag);
 		}
 	}
-	
 }
 
 bool comp(intersection &i1, intersection &i2)
@@ -380,8 +381,11 @@ bool comp(intersection &i1, intersection &i2)
 //ray intersect with scene
 bool ray_intersect(Ray ray, scene_data &scene, BVH &bvh, intersection &ret)
 {
+	//start_intersect = clock();
 	bool flag = false;
 	bvh_intersect(ray, bvh, ret, 0, 0, flag);
+	//end_intersect = clock();
+	//intersect_duration += static_cast<double>(end_intersect - start_intersect) / CLOCKS_PER_SEC * 1000;
 	return flag;
 }
 
@@ -389,21 +393,40 @@ bool ray_intersect(Ray ray, scene_data &scene, BVH &bvh, intersection &ret)
 //求重心坐标
 Vertex findGarCor(Face &f, Vertex p)
 {
-	Eigen::Matrix <double, 4, 3> A;
-	Eigen::Matrix <double, 4, 1> B;
-	Eigen::MatrixXd res;
+	s = clock();
+	//Plan 1 works but time consuming, use eigen to sovle a linear function
+	//Eigen::Matrix <double, 4, 3> A;
+	//Eigen::Matrix <double, 4, 1> B;
+	//Eigen::MatrixXd res;
 
 
-	A << f.v1.x, f.v2.x, f.v3.x,
-		f.v1.y, f.v2.y, f.v3.y,
-		f.v1.z, f.v2.z, f.v3.z,
-		1, 1, 1;
-	B << p.x, p.y, p.z, 1;
+	//A << f.v1.x, f.v2.x, f.v3.x,
+	//	f.v1.y, f.v2.y, f.v3.y,
+	//	f.v1.z, f.v2.z, f.v3.z,
+	//	1, 1, 1;
+	//B << p.x, p.y, p.z, 1;
 
-	res = A.colPivHouseholderQr().solve(B);
+	//res = A.colPivHouseholderQr().solve(B);
 
+	//Vertex ret;
+	//ret.x = res(0, 0), ret.y = res(1, 0), ret.z = res(2, 0);
+
+
+	//plan 2 faster than plan 1 but no idea how it works
+	Vertex e1, e2, e3, d1, d2, d3;
+	e1 = f.v3 - f.v2;
+	e2 = f.v1 - f.v3;
+	e3 = f.v2 - f.v1;
+	d1 = p - f.v1, d2 = p - f.v2, d3 = p - f.v3;
+	Vertex n = e1.cross(e2);
+	double an = n * n;
+	double b1, b2, b3;
+	b1 = e1.cross(d3) * n / an;
+	b2 = e2.cross(d1) * n / an;
+	b3 = e3.cross(d2) * n / an;
 	Vertex ret;
-	ret.x = res(0, 0), ret.y = res(1, 0), ret.z = res(2, 0);
-
+	ret.x = b1, ret.y = b2, ret.z = b3;
+	e = clock();
+	duration += static_cast<double>(e - s) / CLOCKS_PER_SEC * 1000;
 	return ret;
 }

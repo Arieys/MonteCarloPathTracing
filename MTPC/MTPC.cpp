@@ -4,7 +4,8 @@
 #include <algorithm>
 #include "pathTracing.h"
 #include "svpng.inc"
-
+#include <filesystem>
+#include <chrono>
 // 输出 SRC 数组中的数据到图像
 void imshow(double* SRC, int WIDTH, int HEIGHT, string filename, int N_ray_per_pixel)
 {
@@ -31,31 +32,50 @@ void imshow(double* SRC, int WIDTH, int HEIGHT, string filename, int N_ray_per_p
 	svpng(fp, WIDTH, HEIGHT, image, 0);
 }
 
-bool render_scene(std::string filename, int N_ray_per_pixel)
+bool render_scene(std::string path, std::string filename, int N_ray_per_pixel)
 {
 	scene_data scene;
 	
-	scene.read_scene(filename);
+	clock_t start,end;
+	double duration;
+	start = clock();
+	scene.read_scene(path+filename);
 
 	sort(scene.f.begin(), scene.f.end(), compare);
 	cout << "sort by morton code successfully" << endl;
 	BVH bvh(scene);
+	end = clock();
+	std::cout << end << " " << start << std::endl;
+	duration = static_cast<double>(end - start)/ CLOCKS_PER_SEC * 1000;
+
+	std::cout << "Phase 1(read scene + bvh build) time cost = " << duration << " ms" << std::endl;
 	
 	image img(scene.camera.width, scene.camera.height); //定义图像空间
 
+	start = clock();
+
 	generateImg(scene, bvh, img, N_ray_per_pixel);
 
-	imshow(img.img, scene.camera.width, scene.camera.height, filename, N_ray_per_pixel);
+	end = clock();
+
+	duration = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000;
+
+	std::cout << "Phase 2(ray tracing) = " << duration << " ms" << std::endl;
+	std::string output_path = "../result/";
+	imshow(img.img, scene.camera.width, scene.camera.height, output_path + filename, N_ray_per_pixel);
+
+	return true;
 }
 
 
 int main()
 {
+	std::string path = "../scene/";
 	std::string filename1 = "bedroom";
 	std::string filename2 = "veach-mis";
 	std::string filename3 = "cornell-box";
-
-	render_scene(filename3, 100);
+	//std::cout << std::filesystem::current_path() << std::endl;
+	render_scene(path, filename3, 25);
 	//render_scene(filename2, 10);
 	//render_scene(filename3, 10);
 	//render_scene(filename1, 100);

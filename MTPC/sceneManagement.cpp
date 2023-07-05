@@ -266,6 +266,7 @@ bool scene_data::read_scene(std::string filename)
 	std::string objfilename = filename + ".obj";
 	std::string mtlfilename = filename + ".mtl";
 	std::string xmlfilename = filename + ".camera";
+	std::cout << objfilename << std::endl;
 	this->read_mtl(mtlfilename);
 	this->read_obj(objfilename);
 	this->read_xml(xmlfilename);
