@@ -204,7 +204,7 @@ private:
 		material->Get(AI_MATKEY_COLOR_AMBIENT, color);
 		mat.Ka = glm::vec4(color.r, color.g, color.b, 1.0);
 		material->Get(AI_MATKEY_COLOR_DIFFUSE, color);
-		mat.Kd = glm::vec4(color.r, color.g, color.b, 1.0);
+		mat.Kd = glm::vec4(color.r, color.g, color.b, 1.0);		
 		material->Get(AI_MATKEY_COLOR_SPECULAR, color);
 		mat.Ks = glm::vec4(color.r, color.g, color.b, 1.0);
 		material->Get(AI_MATKEY_COLOR_TRANSPARENT, color);
@@ -235,9 +235,8 @@ private:
 				my_face.v.push_back(vertices[face.mIndices[j]]);
 			glm::vec3 center;
 			center = (my_face.v[0].Position + my_face.v[1].Position + my_face.v[2].Position) / 3.0f;
-			//center.print();
 			my_face.morton_code = getMortonCode(center.x, center.y, center.z);
-
+			my_face.calNormal();
 			this->faces.push_back(my_face);
 		}
 

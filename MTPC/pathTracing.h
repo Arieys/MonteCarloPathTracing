@@ -24,6 +24,4 @@ bool comp(intersection &i1, intersection &i2);
 
 void generateImg(scene_data &scene, BVH &bvh, image &img, int N_ray_per_pixel);
 
-bool ray_intersect(Ray ray, scene_data &scene, BVH &bvh, intersection &ret);
-
 glm::vec3 findGarCor(Face &f, glm::vec3 p);

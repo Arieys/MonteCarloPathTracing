@@ -133,10 +133,11 @@ Ray nextRay(intersection &p, glm::vec3 dir,glm::vec3 kd, scene_data &data)
 //calculate p -> dir radiance
 glm::vec3 shade(intersection &p, glm::vec3 dir, scene_data &data, BVH &bvh)
 {	
+	//todo : 直接光照存在一些问题需要解决
 	glm::vec3 L_dir(0,0,0);		
 	//处理自发光项（光源）
 	if (p.f.material.Ke != glm::vec4(0,0,0,1.0)) {
-		std::cout << "Hit light" << std::endl;
+		//std::cout << "Hit light" << std::endl;
 		L_dir = p.f.material.Ke;
 		return L_dir;
 	}
@@ -197,17 +198,18 @@ glm::vec3 shade(intersection &p, glm::vec3 dir, scene_data &data, BVH &bvh)
 		rl.direction = direction;
 		intersection inter;
 
-		ray_intersect(rl, data, bvh, inter);
-		if (inter.f.morton_code != sample_face.morton_code) {
-			visibility = 0.0f;
-		}
+		//ray_intersect(rl, data, bvh, inter);
+		//if (inter.f.morton_code != sample_face.morton_code) {
+			//visibility = 0.0f;
+		//}
 
 		if (glm::dot(direction, p.pn) > 0){
 			float pdf_light = double(1)/total_aera; //pdf_light = 1/A where A is the aera of light source
 			float cos_theta = abs(glm::dot(direction, vn) / direction.length() / vn.length());
 			float cos_theta_hat = abs(glm::dot(direction, p.pn) / direction.length() / p.pn.length());
 			float dist = max(1.0f,distance(xl, p.p));
-			glm::vec3 intensity = l.material.Ke  *  cos_theta * cos_theta_hat / pow(dist, 2) / pdf_light * visibility;
+			glm::vec3 intensity = l.material.Ke  *  cos_theta * cos_theta_hat / pow(dist, 2) / pdf_light * visibility ;
+			//std::cout << intensity.x << " " << intensity.y << " " << intensity.z << std::endl;
 			double kd_dots = glm::dot(direction,p.pn); //cos between light to intersection and face normal
 			
 			//only add diffuse
@@ -215,10 +217,12 @@ glm::vec3 shade(intersection &p, glm::vec3 dir, scene_data &data, BVH &bvh)
 				L_dir.x += kd.x * intensity.x * kd_dots / pi;
 				L_dir.y += kd.y * intensity.y * kd_dots / pi;
 				L_dir.z += kd.z * intensity.z * kd_dots / pi;
+				//
 			}
 		}
 	}
-
+	//std::cout << L_dir.x << " " << L_dir.y << " " << L_dir.z << std::endl;
+	return L_dir;
 	//indirect illumination
 	glm::vec3 L_indir(0, 0, 0);
 	float P_RR = 0.6; //russian roulette probability
