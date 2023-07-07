@@ -169,16 +169,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="boundingbox.cpp" />
     <ClCompile Include="BVH.cpp" />
+    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="geometry.cpp" />
     <ClCompile Include="morton code.cpp" />
     <ClCompile Include="MTPC.cpp" />
-    <ClCompile Include="pathTracing.cpp" />
+    <ClCompile Include="pathTracer.cpp" />
     <ClCompile Include="sceneManagement.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="boundingbox.h" />
     <ClInclude Include="BVH.h" />
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="geometry.h" />
+    <ClInclude Include="material.h" />
     <ClInclude Include="morton code.h" />
-    <ClInclude Include="pathTracing.h" />
+    <ClInclude Include="pathTracer.h" />
+    <ClInclude Include="ray.h" />
     <ClInclude Include="sceneManagement.h" />
   </ItemGroup>
   <ItemGroup>

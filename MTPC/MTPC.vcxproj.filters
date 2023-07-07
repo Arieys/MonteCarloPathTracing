@@ -27,7 +27,16 @@
     <ClCompile Include="BVH.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="pathTracing.cpp">
+    <ClCompile Include="pathTracer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="boundingbox.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +50,22 @@
     <ClInclude Include="BVH.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="pathTracing.h">
+    <ClInclude Include="pathTracer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="material.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ray.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="boundingbox.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

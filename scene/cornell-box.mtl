@@ -26,6 +26,7 @@ Ni 1
 newmtl Light
 Kd 0 0 0
 Ks 0 0 0
+Ke 50 50 50
 Ns 1
 Ni 1
 newmtl Table

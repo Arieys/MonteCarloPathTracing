@@ -1,8 +1,6 @@
 ﻿#include <iostream>
-#include "sceneManagement.h"
 #include "morton code.h"
 #include <algorithm>
-#include "pathTracing.h"
 #include "svpng.inc"
 #include <filesystem>
 #include <chrono>
@@ -10,6 +8,10 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+
+#include "pathTracer.h"
+
+#include <glm/glm.hpp>
 
 // 输出 SRC 数组中的数据到图像
 void imshow(double* SRC, int WIDTH, int HEIGHT, string filename, int N_ray_per_pixel)
@@ -56,13 +58,16 @@ bool render_scene(std::string path, std::string filename, int N_ray_per_pixel)
 
 	start = clock();
 
-	generateImg(scene, bvh, img, N_ray_per_pixel);
+	PathTracer pt;
+	pt.generateImg(scene, bvh, img, N_ray_per_pixel);
 
 	end = clock();
 
 	duration = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000;
 
 	std::cout << "Phase 2(ray tracing) = " << duration << " ms" << std::endl;
+
+	pt.outputTime();
 	std::string output_path = "../result/";
 	imshow(img.img, scene.camera.width, scene.camera.height, output_path + filename, N_ray_per_pixel);
 
