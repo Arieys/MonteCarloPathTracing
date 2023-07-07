@@ -155,7 +155,9 @@ bool intersect(Ray &ray, boundingBox &b)
 
 double Face::calAera()
 {
-	double a = (v[1].Position-v[0].Position).length(), b = (v[2].Position - v[0].Position).length(), c = (v[2].Position - v[1].Position).length(); //length of a,b,c
+	double a = sqrt(glm::dot(v[1].Position - v[0].Position, v[1].Position - v[0].Position));
+	double b = sqrt(glm::dot(v[2].Position - v[0].Position, v[2].Position - v[0].Position));
+	double c = sqrt(glm::dot(v[2].Position - v[1].Position, v[2].Position - v[1].Position)); //length of a,b,c
 	double cos_c = (a * a + b * b - c * c) / (2 * a * b); //”‡œ“∂®¿Ì
 	double sin_c = sqrt(1 - pow(cos_c, 2));
 	double aera = a * b * sin_c / 2;

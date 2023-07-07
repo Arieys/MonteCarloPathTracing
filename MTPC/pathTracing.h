@@ -8,13 +8,15 @@
 #include <Eigen/Dense>
 #include <omp.h>
 
+const int MAXDEPTH = 6;
+
 const double pi = 3.1415926;
 
 //test russian_roulette with probability pr
 bool russian_Roulette(double pr);
 
 //calculate p -> w0 radiance
-glm::vec3 shade(intersection &p, glm::vec3 dir, scene_data &data, BVH &bvh);
+glm::vec3 shade(intersection &p, glm::vec3 dir, scene_data &data, BVH &bvh, int depth);
 
 void bvh_intersect(Ray ray, BVH &bvh, intersection &v, int current_node, int current_level, bool &flag);
 

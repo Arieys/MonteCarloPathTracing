@@ -110,7 +110,7 @@ Ray nextRay(intersection &p, glm::vec3 dir,glm::vec3 kd, scene_data &data)
 		}
 	}
 
-	double kd_norm = kd.length(), ks_norm = m->Ks.length();
+	double kd_norm = sqrt(glm::dot(m->Kd,m->Kd)), ks_norm = sqrt(glm::dot(m->Ks,m->Ks));
 	type ray_type;
 	if (ks_norm != 0 && kd_norm / ks_norm < u2(e)) {
 		//sample specular
@@ -131,7 +131,7 @@ Ray nextRay(intersection &p, glm::vec3 dir,glm::vec3 kd, scene_data &data)
 }
 
 //calculate p -> dir radiance
-glm::vec3 shade(intersection &p, glm::vec3 dir, scene_data &data, BVH &bvh)
+glm::vec3 shade(intersection &p, glm::vec3 dir, scene_data &data, BVH &bvh, int depth)
 {	
 	//todo : 直接光照存在一些问题需要解决
 	glm::vec3 L_dir(0,0,0);		
@@ -187,7 +187,7 @@ glm::vec3 shade(intersection &p, glm::vec3 dir, scene_data &data, BVH &bvh)
 		double rnd1 = u2(e), rnd2 = u2(e), rnd3 = u2(e);
 		float p1 = rnd1 / (rnd1 + rnd2 + rnd3), p2 = rnd2 / (rnd1 + rnd2 + rnd3), p3 = rnd3 / (rnd1 + rnd2 + rnd3);
 		xl = sample_face.v[0].Position * p1 + sample_face.v[1].Position * p2 + sample_face.v[2].Position * p3;
-		vn = sample_face.v[0].Normal * p1 + sample_face.v[1].Normal * p2 + sample_face.v[2].Normal * p3;
+		vn = glm::normalize(sample_face.v[0].Normal * p1 + sample_face.v[1].Normal * p2 + sample_face.v[2].Normal * p3);
 
 		glm::vec3 direction = glm::normalize(xl - p.p); //direction from point p to light
 
@@ -198,17 +198,18 @@ glm::vec3 shade(intersection &p, glm::vec3 dir, scene_data &data, BVH &bvh)
 		rl.direction = direction;
 		intersection inter;
 
-		//ray_intersect(rl, data, bvh, inter);
-		//if (inter.f.morton_code != sample_face.morton_code) {
-			//visibility = 0.0f;
-		//}
+		ray_intersect(rl, data, bvh, inter);
+		if (inter.f.morton_code != sample_face.morton_code) {
+			visibility = 0.0f;
+		}
 
 		if (glm::dot(direction, p.pn) > 0){
 			float pdf_light = double(1)/total_aera; //pdf_light = 1/A where A is the aera of light source
-			float cos_theta = abs(glm::dot(direction, vn) / direction.length() / vn.length());
-			float cos_theta_hat = abs(glm::dot(direction, p.pn) / direction.length() / p.pn.length());
+			float cos_theta = abs(glm::dot(direction, vn));
+			float cos_theta_hat = abs(glm::dot(direction, p.pn));
 			float dist = max(1.0f,distance(xl, p.p));
-			glm::vec3 intensity = l.material.Ke  *  cos_theta * cos_theta_hat / pow(dist, 2) / pdf_light * visibility ;
+			//std::cout << cos_theta << " " << cos_theta_hat << std::endl;
+			glm::vec3 intensity = l.material.Ke  *  cos_theta * cos_theta_hat / static_cast<float>(pow(dist, 2)) / pdf_light * visibility;
 			//std::cout << intensity.x << " " << intensity.y << " " << intensity.z << std::endl;
 			double kd_dots = glm::dot(direction,p.pn); //cos between light to intersection and face normal
 			
@@ -221,19 +222,17 @@ glm::vec3 shade(intersection &p, glm::vec3 dir, scene_data &data, BVH &bvh)
 			}
 		}
 	}
-	//std::cout << L_dir.x << " " << L_dir.y << " " << L_dir.z << std::endl;
-	return L_dir;
 	//indirect illumination
 	glm::vec3 L_indir(0, 0, 0);
 	float P_RR = 0.6; //russian roulette probability
 
 	//BRDF sample the hemisphere, get direction
-	if (russian_Roulette(P_RR)) {
+	if (russian_Roulette(P_RR) && depth < MAXDEPTH) {
 		Ray r = nextRay(p, dir, kd, data); //sample next ray based on BRDF
 		//find the first object ray hits
 		intersection ret;
 		if (ray_intersect(r, data, bvh, ret)) {
-			glm::vec3 intensity = shade(ret, -r.direction,data,bvh) / P_RR;
+			glm::vec3 intensity = shade(ret, -r.direction,data,bvh,depth+1) / P_RR;
 
 			if (r.ray_type == DIFFUSE) {
 				if (ret.f.material.Ke == glm::vec4(0,0,0,1.0)) { //hit none emitting object
@@ -248,9 +247,9 @@ glm::vec3 shade(intersection &p, glm::vec3 dir, scene_data &data, BVH &bvh)
 				L_indir.z += m.Ks.z *  intensity.z;
 			}
 			else {
-				L_indir.x += m.Tf.x * intensity.x;
-				L_indir.y += m.Tf.y * intensity.y;
-				L_indir.z += m.Tf.z * intensity.z;
+				L_indir.x += intensity.x;
+				L_indir.y += intensity.y;
+				L_indir.z += intensity.z;
 			}
 		}
 	}
@@ -267,8 +266,8 @@ double duration = 0;
 void generateImg(scene_data &scene, BVH &bvh, image &img, int N_ray_per_pixel)
 {
 	scene.camera.up = glm::normalize(scene.camera.up);
-	glm::vec3 dir = scene.camera.look_at - scene.camera.eye;
-	float l = dir.length();
+	glm::vec3 dir = glm::normalize(scene.camera.look_at - scene.camera.eye);
+	float l = sqrt(glm::dot(dir,dir));
 	float dy = tan(scene.camera.fovy/2/180 * pi) * l; //根据fovy求世界坐标系中半屏幕的x,y大小
 	float dx = dy / scene.camera.height * scene.camera.width;
 
@@ -302,7 +301,7 @@ void generateImg(scene_data &scene, BVH &bvh, image &img, int N_ray_per_pixel)
 			
 				intersection ret;
 				if (ray_intersect(ray, scene, bvh, ret)) {
-					glm::vec3 radiance = shade(ret, -ray.direction, scene, bvh);
+					glm::vec3 radiance = shade(ret, -ray.direction, scene, bvh, 0);
 
 					m.lock();
 					current_radiance.x += radiance.x/N_ray_per_pixel;
@@ -340,7 +339,10 @@ void bvh_intersect(Ray ray, BVH &bvh, intersection &v, int current_node, int cur
 					i.f = *bvh.bvh[index].object;
 
 					glm::vec3 garcov = findGarCor(i.f, i.p);
-					i.pn = (i.f.v[0].Normal * garcov.x) + (i.f.v[1].Normal * garcov.y) + (i.f.v[2].Normal * garcov.z);
+					//std::cout << garcov.x << " " << garcov.y << " " << garcov.z << std::endl;
+					
+					//cout << i.f.v[0].Normal.x << " " << i.f.v[0].Normal.y << " " << i.f.v[0].Normal.z << std::endl;
+					i.pn = glm::normalize((i.f.v[0].Normal * garcov.x) + (i.f.v[1].Normal * garcov.y) + (i.f.v[2].Normal * garcov.z));
 					//if (ray.direction * i.f.norm < 0) i.pn = i.f.norm;
 						//else i.pn = i.f.norm.negative();
 

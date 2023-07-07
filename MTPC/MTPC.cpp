@@ -39,8 +39,6 @@ void imshow(double* SRC, int WIDTH, int HEIGHT, string filename, int N_ray_per_p
 
 bool render_scene(std::string path, std::string filename, int N_ray_per_pixel)
 {
-
-	
 	clock_t start,end;
 	double duration;
 	start = clock();
@@ -80,7 +78,7 @@ int main()
 	std::string filename3 = "cornell-box";
 	std::string filename4 = "scene01";
 	std::cout << std::filesystem::current_path() << std::endl;
-	render_scene(path, filename4, 2);
+	render_scene(path, filename4, 25);
 	//render_scene(filename2, 10);
 	//render_scene(filename3, 10);
 	//render_scene(filename1, 100);

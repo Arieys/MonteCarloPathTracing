@@ -46,7 +46,6 @@ public:
 	glm::vec4 Ka;
 	glm::vec4 Kd;
 	glm::vec4 Ks;
-	glm::vec4 Tf;
 	double Tr;
 	double Ns;
 	double Ni;
@@ -198,7 +197,6 @@ private:
 		aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 		Material mat;
 		aiColor3D color;
-		double data_in;
 
 		//读取mtl文件顶点数据
 		material->Get(AI_MATKEY_COLOR_AMBIENT, color);
@@ -208,16 +206,14 @@ private:
 		material->Get(AI_MATKEY_COLOR_SPECULAR, color);
 		mat.Ks = glm::vec4(color.r, color.g, color.b, 1.0);
 		material->Get(AI_MATKEY_COLOR_TRANSPARENT, color);
-		mat.Tf = glm::vec4(color.r, color.g, color.b, 1.0);
+		mat.Tr = color.r;
 		material->Get(AI_MATKEY_COLOR_EMISSIVE, color);
 		mat.Ke = glm::vec4(color.r, color.g, color.b, 1.0);
-		cout << mat.Ke.x << " " << mat.Ke.y << " " << mat.Ke.z << std::endl;
-		material->Get(AI_MATKEY_SHININESS, data_in);
-		mat.Ns = data_in;
-		material->Get(AI_MATKEY_REFRACTI, data_in);
-		mat.Ni = data_in;
-		material->Get(AI_MATKEY_OPACITY, data_in);
-		mat.Tr = data_in;
+		material->Get(AI_MATKEY_SHININESS, color);
+		mat.Ns = color.r;
+		material->Get(AI_MATKEY_REFRACTI, color);
+		mat.Ni = color.r;
+
 
 		// 1. 漫反射贴图
 		int id = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");

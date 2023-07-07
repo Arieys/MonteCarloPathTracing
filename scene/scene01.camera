@@ -1,7 +1,6 @@
-eye 0 1 6.8
-lookat 0 1 5.8
+eye 0 4 7.2
+lookat 0 4 7
 up 0 1 0
 fovy 19.5
 width 1024
 height 1024
-mtlname blinn2SG 50 50 50
