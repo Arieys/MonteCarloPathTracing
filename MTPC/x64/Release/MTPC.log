@@ -1,90 +1,125 @@
 ﻿  BVH.cpp
 c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(105): warning C4102: “std”: 未引用的标签
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(225): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(226): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\bvh.cpp(11): warning C4554: “&”: 检查运算符优先级是否存在的可能的错误；使用括号阐明优先级
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\bvh.cpp(46): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\bvh.cpp(47): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\bvh.cpp(52): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\bvh.cpp(58): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-  morton code.cpp
-c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(291): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(330): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(331): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\bvh.cpp(9): warning C4554: “&”: 检查运算符优先级是否存在的可能的错误；使用括号阐明优先级
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\bvh.cpp(43): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\bvh.cpp(44): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\bvh.cpp(49): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\bvh.cpp(55): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
   MTPC.cpp
 c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(105): warning C4102: “std”: 未引用的标签
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(225): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(226): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(291): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(330): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(331): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
 c:\users\yanshuai01\downloads\eigen-3.4.0\eigen\src\core\arch\default\half.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 c:\users\yanshuai01\downloads\eigen-3.4.0\eigen\src\core\arch\default\bfloat16.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 c:\users\yanshuai01\downloads\eigen-3.4.0\eigen\src\core\arch\default\genericpacketmathfunctions.h(675): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   pathTracing.cpp
 c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(105): warning C4102: “std”: 未引用的标签
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(225): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(226): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(291): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(330): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(331): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
 c:\users\yanshuai01\downloads\eigen-3.4.0\eigen\src\core\arch\default\half.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 c:\users\yanshuai01\downloads\eigen-3.4.0\eigen\src\core\arch\default\bfloat16.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 c:\users\yanshuai01\downloads\eigen-3.4.0\eigen\src\core\arch\default\genericpacketmathfunctions.h(675): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(5): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(17): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
 c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(18): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
 c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(32): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(68): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(156): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(169): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(178): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(316): warning C4244: “+=”: 从“double”转换到“T”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(65): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(154): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(157): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
           with
           [
               T=float
           ]
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(317): warning C4244: “+=”: 从“double”转换到“T”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(167): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(187): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(206): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(215): warning C4244: “+=”: 从“double”转换到“T”，可能丢失数据
           with
           [
               T=float
           ]
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(318): warning C4244: “+=”: 从“double”转换到“T”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(216): warning C4244: “+=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(217): warning C4244: “+=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(224): warning C4305: “初始化”: 从“double”到“float”截断
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(267): warning C4244: “初始化”: 从“glm::tvec3<float,0>::length_type”转换到“float”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(268): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\pathtracing.cpp(416): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
           with
           [
               T=float
           ]
   sceneManagement.cpp
 c1xx : warning C4199: C++/CLI、C++/CX 或 OpenMP 不支持两阶段名称查找；请使用 /Zc:twoPhase-
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(105): warning C4102: “std”: 未引用的标签
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(225): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(226): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(33): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(291): warning C4267: “return”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(330): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(331): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(25): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(26): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(28): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(29): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(31): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
 c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(36): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(45): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(48): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(88): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(91): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(105): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(108): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(122): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(125): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(141): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(145): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(148): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(152): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(156): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(159): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(163): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(167): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(179): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(199): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(202): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(210): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(213): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(221): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(224): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(245): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(248): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
-c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(251): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(37): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(39): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(40): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(42): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(47): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(48): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(50): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(51): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.cpp(53): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=float
+          ]
   正在生成代码
-  899 of 911 functions (98.7%) were compiled, the rest were copied from previous compilation.
-    16 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+c:\users\yanshuai01\downloads\montecarlopathtracing-main\montecarlopathtracing\mtpc\scenemanagement.h(101): warning C4715: “scene_data::read_scene”: 不是所有的控件路径都返回值
+  9 of 830 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    7 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
   MTPC.vcxproj -> C:\Users\yanshuai01\Downloads\MonteCarloPathTracing-main\MonteCarloPathTracing\x64\Release\MTPC.exe

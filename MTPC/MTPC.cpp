@@ -6,6 +6,11 @@
 #include "svpng.inc"
 #include <filesystem>
 #include <chrono>
+
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 // 输出 SRC 数组中的数据到图像
 void imshow(double* SRC, int WIDTH, int HEIGHT, string filename, int N_ray_per_pixel)
 {
@@ -34,14 +39,13 @@ void imshow(double* SRC, int WIDTH, int HEIGHT, string filename, int N_ray_per_p
 
 bool render_scene(std::string path, std::string filename, int N_ray_per_pixel)
 {
-	scene_data scene;
+
 	
 	clock_t start,end;
 	double duration;
 	start = clock();
-	scene.read_scene(path+filename);
-
-	sort(scene.f.begin(), scene.f.end(), compare);
+	scene_data scene(path + filename);
+	sort(scene.faces.begin(), scene.faces.end(), compare);
 	cout << "sort by morton code successfully" << endl;
 	BVH bvh(scene);
 	end = clock();
@@ -70,12 +74,13 @@ bool render_scene(std::string path, std::string filename, int N_ray_per_pixel)
 
 int main()
 {
-	std::string path = "../scene/";
+	std::string path = std::filesystem::current_path().string() + "/../scene/";
 	std::string filename1 = "bedroom";
 	std::string filename2 = "veach-mis";
 	std::string filename3 = "cornell-box";
-	//std::cout << std::filesystem::current_path() << std::endl;
-	render_scene(path, filename3, 25);
+	std::string filename4 = "scene01";
+	std::cout << std::filesystem::current_path() << std::endl;
+	render_scene(path, filename4, 2);
 	//render_scene(filename2, 10);
 	//render_scene(filename3, 10);
 	//render_scene(filename1, 100);

@@ -1,7 +1,5 @@
 #include "BVH.h"
 
-vector <Vertex> tri_point;     //record the point array for sorting
-
 int count_level_20 = 0;
 
 int count_set_bits(int x)
@@ -36,8 +34,7 @@ double BVHNode::findMin(double p1, double p2, double p3, double p4)
 
 BVH::BVH(scene_data &data)
 {
-	tri_point = data.v;
-	buildBVH(data.f);
+	buildBVH(data.faces);
 	cout << "Build BVH success" << endl;
 }
 
@@ -86,7 +83,7 @@ void BVH::buildBVH(vector <Face> &data)
 
 void BVHNode::findBondingBox(Face &data)
 {
-	Vertex p1 = data.v1, p2 = data.v2, p3 = data.v3;
+	glm::vec3 p1 = data.v[0].Position, p2 = data.v[1].Position, p3 = data.v[2].Position;
 	
 	b.max_x = dmax(p1.x, p2.x, p3.x);
 	b.max_y = dmax(p1.y, p2.y, p3.y);

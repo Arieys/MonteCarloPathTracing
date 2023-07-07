@@ -86,9 +86,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <ReferencePath>C:\Users\TONY\source\repos\MTPC\include;$(ReferencePath)</ReferencePath>
-    <IncludePath>C:\Users\yanshuai01\Downloads\eigen-3.4.0;C:\Users\yanshuai01\Downloads\glm;C:\Users\yanshuai01\Downloads\opencv\build\include;C:\Users\TONY\source\repos\MTPC\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\yanshuai01\Downloads\MonteCarloPathTracing-main\MonteCarloPathTracing\3rd\Assimp\include;C:\Users\yanshuai01\Downloads\eigen-3.4.0;C:\Users\yanshuai01\Downloads\glm;C:\Users\yanshuai01\Downloads\opencv\build\include;C:\Users\TONY\source\repos\MTPC\include;$(IncludePath)</IncludePath>
     <ExecutablePath>C:\Opencv\opencv\build\include\opencv2;C:\Opencv\opencv\build\include;$(ExecutablePath)</ExecutablePath>
-    <LibraryPath>C:\Users\yanshuai01\Downloads\opencv\build\x64\vc15\lib;C:\Opencv\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\yanshuai01\Downloads\MonteCarloPathTracing-main\MonteCarloPathTracing\3rd\Assimp\lib;C:\Users\yanshuai01\Downloads\opencv\build\x64\vc15\lib;C:\Opencv\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -165,7 +165,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opencv_world460.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_world460.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
