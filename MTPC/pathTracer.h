@@ -9,6 +9,7 @@
 #include <omp.h>
 
 #define MULTI_THREAD
+#define MAX_THREAD_NUM 16
 
 const double pi = 3.1415926;
 

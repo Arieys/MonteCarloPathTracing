@@ -26,25 +26,30 @@ Ni 1
 newmtl Light5
 Kd 0.0 0.0 0.0
 Ks 0 0 0
+Ke 800.0 800.0 800.0
 Ns 1
 Ni 1
 newmtl Light4
 Kd 0.0 0.0 0.0
 Ks 0 0 0
+Ke 1.23457 1.23457 1.23457
 Ns 1
 Ni 1
 newmtl Light3
 Kd 0.0 0.0 0.0
 Ks 0 0 0
+Ke 11.1111 11.1111 11.1111
 Ns 1
 Ni 1
 newmtl Light2
 Kd 0.0 0.0 0.0
 Ks 0 0 0
+Ke 100.0 100.0 100.0
 Ns 1
 Ni 1
 newmtl Light1
 Kd 0.0 0.0 0.0
 Ks 0 0 0
+Ke 901.803 901.803 901.803
 Ns 1
 Ni 1

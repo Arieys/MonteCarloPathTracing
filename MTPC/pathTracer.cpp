@@ -293,7 +293,7 @@ void PathTracer::generateImg(scene_data &scene, BVH &bvh, image &img, int N_ray_
 			glm::vec3 current_radiance(0, 0, 0);
 			//mutex clock_inte_m, clock_shade_m;
 #ifdef MULTI_THREAD
-			omp_set_num_threads(min(N_ray_per_pixel,8));
+			omp_set_num_threads(min(N_ray_per_pixel,MAX_THREAD_NUM));
 			#pragma omp parallel for
 #endif // MULTI_THREAD
 			for (int k = 0; k < N_ray_per_pixel; k++) {

@@ -83,7 +83,7 @@ int main()
 	std::string filename3 = "cornell-box";
 	std::string filename4 = "scene01";
 	std::cout << std::filesystem::current_path() << std::endl;
-	render_scene(path, filename4, 25);
+	render_scene(path, filename4, 100);
 	//render_scene(filename2, 10);
 	//render_scene(filename3, 10);
 	//render_scene(filename1, 100);
